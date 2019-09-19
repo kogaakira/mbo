@@ -1,8 +1,22 @@
 .name{
-background-color: khaki;
-color:black;
+    background-color: khaki;
 }
+
+.name-selected{
+    background-color: maroon;
+    color: beige;
+}
+
 .prof{
-    background-color:beige;
-    color:black;
+    background-color: beige;
+} 
+
+.prof-selected{
+    background-color: khaki;
+    color:maroon;
 }
+
+.error{
+    background-color:red;
+    color: white;
+} 

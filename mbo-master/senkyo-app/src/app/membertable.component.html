@@ -1,9 +1,11 @@
 <h2>被選挙人名簿</h2>
-<ul>
-	<table>
-		<tr *ngFor="let member of members">
-			<td class = "name"><b> {{member.name}} </b></td>
-			<td class = "prof">{{member.prof}}</td>
-		</tr>
-	</table>
-</ul>
+<table>
+    <tr *ngFor="let member of members" (click)="onSelect(member)" >
+         <td class = "name" [class.name-selected]="isSelected(member)>=0">
+              <b>{{member.name}}</b></td>
+          <td class = "prof"[class.prof-selected]="isSelected(member)>=0">
+              {{member.prof}}<td>
+    </tr>
+</table>
+<div *ngIf = "overflow" class = "error">選択は4名までです</div>
+<div>{{whoisselected}}</div> 

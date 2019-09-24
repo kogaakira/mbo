@@ -1,26 +1,36 @@
 import { Component } from '@angular/core';
 import { Member } from './member';
-
+import { MembersService } from './members.service';
+import { OnInit } from '@angular/core';
 
 @Component({
     selector: 'membertable',
     templateUrl: './membertable.component.html',
     styleUrls: ['./membertable.component.css']
 })
-export class MembertableComponent {
-    members = Member.members;
+
+export class MembertableComponent implements OnInit{
+    members:Member[];
     selectedMembers: Member[];
     overflow: boolean;
     whoisselected: string;
 
-    constructor() {
+    constructor(private mservice: MembersService) {
         this.selectedMembers = new Array()
         this.overflow = false;
         this.whoisselected = "";
 
     };
 
-    onSelect(member: Member) {
+     ngOnInit(): void {
+        this.getMembers();
+    }
+
+    getMembers() :void{
+        this.mservice.getMembers().then(getMembers=>this.members=getMembers);
+    }
+
+    onSelect(member: Member) :void{
         let selectedindex = this.isSelected(member);
         if (selectedindex >= 0) {
             this.selectedMembers.splice(selectedindex, 1);
